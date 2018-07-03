@@ -22,7 +22,7 @@ namespace Sorts
                     BubbleSort(array);
                     break;
                 case AvailableSorts.SelectionSort:
-                    SelectionSort(array);
+                    InsertionSort(array);
                     break;
                 default:
                     Console.WriteLine("Array wasn't sorted");
@@ -46,7 +46,7 @@ namespace Sorts
             }
         }
 
-        public static void SelectionSort<T>(T[] array) where T : IComparable
+        public static void InsertionSort<T>(T[] array) where T : IComparable
         {
             for (int i = 1; i < array.Length; i++)
             {
