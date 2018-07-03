@@ -8,7 +8,7 @@ namespace Sorts
 {
     public static class Sorts
     {
-        public enum AvailableSorts { BubbleSort, InsertionSort, SelectionSort, MergeSort }
+        public enum AvailableSorts { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort }
 
         public static void Sort<T>(T[] array, AvailableSorts availableSorts) where T : IComparable
         {
@@ -29,6 +29,9 @@ namespace Sorts
                     break;
                 case AvailableSorts.MergeSort:
                     MergeSort(array);
+                    break;
+                case AvailableSorts.QuickSort:
+                    QuickSort(array);
                     break;
                 default:
                     Console.WriteLine("Array wasn't sorted");
@@ -146,6 +149,56 @@ namespace Sorts
             MergeSort(rightArray);
 
             MergeArrays(leftArray, rightArray, array);
+        }
+        #endregion
+
+        #region QuickSort
+        public static void QuickSort<T>(T[] array) where T : IComparable
+        {
+            QuickSort(array, 0, array.Length - 1);
+        }
+
+        public static void QuickSort<T>(T[] array, int leftIndex, int rightIndex) where T : IComparable
+        {
+            if (leftIndex >= rightIndex)
+                return;
+            int mediumIndex = (new Random()).Next(rightIndex - leftIndex + 1) + leftIndex;
+
+            Tools.Swap(ref array[mediumIndex], ref array[rightIndex]);
+
+            int left = leftIndex;
+            int right = rightIndex - 1;
+            while (left < right)
+            {
+                if (array[right].CompareTo(array[rightIndex]) < 0 && array[left].CompareTo(array[rightIndex]) >= 0)
+                {
+                    Tools.Swap(ref array[left++], ref array[right--]);
+                }
+                if (array[left].CompareTo(array[rightIndex]) < 0)
+                {
+                    left++;
+                }
+                if (array[right].CompareTo(array[rightIndex]) >= 0)
+                {
+                    right--;
+                }
+            }
+            
+            if (left == right)
+            {
+                if (array[left].CompareTo(array[rightIndex]) < 0)
+                {
+                    left++;
+                }
+                else
+                {
+                    right--;
+                }
+            }
+            Tools.Swap(ref array[left++], ref array[rightIndex]);
+
+            QuickSort(array, left, rightIndex);
+            QuickSort(array, leftIndex, right);
         }
         #endregion
     }

@@ -19,7 +19,11 @@ namespace Sorts
         public static int[] CreateUnsortedArray(int size)
         {
             int[] array = new int[size];
+
+            // more random
+            // Random random = new Random(DateTime.Now.Millisecond);
             Random random = new Random();
+
             for (int i = 0; i < size; i++)
             {
                 array[i] = random.Next(size);
