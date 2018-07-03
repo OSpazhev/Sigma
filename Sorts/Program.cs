@@ -16,7 +16,11 @@ namespace Sorts
             array = Tools.CreateUnsortedArray(10);
             Sorts.Sort(array, Sorts.AvailableSorts.BubbleSort);
 
-            // Bubble Sort
+            // Insertion Sort
+            array = Tools.CreateUnsortedArray(10);
+            Sorts.Sort(array, Sorts.AvailableSorts.InsertionSort);
+
+            // Selection Sort
             array = Tools.CreateUnsortedArray(10);
             Sorts.Sort(array, Sorts.AvailableSorts.SelectionSort);
         }

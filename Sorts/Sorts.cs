@@ -8,7 +8,7 @@ namespace Sorts
 {
     public static class Sorts
     {
-        public enum AvailableSorts { BubbleSort, SelectionSort }
+        public enum AvailableSorts { BubbleSort, InsertionSort, SelectionSort }
 
         public static void Sort<T>(T[] array, AvailableSorts availableSorts) where T : IComparable
         {
@@ -21,8 +21,11 @@ namespace Sorts
                 case AvailableSorts.BubbleSort:
                     BubbleSort(array);
                     break;
-                case AvailableSorts.SelectionSort:
+                case AvailableSorts.InsertionSort:
                     InsertionSort(array);
+                    break;
+                case AvailableSorts.SelectionSort:
+                    SelectionSort(array);
                     break;
                 default:
                     Console.WriteLine("Array wasn't sorted");
@@ -65,6 +68,23 @@ namespace Sorts
                     array[j] = array[j - 1];
                 }
                 array[indexForInsert] = bufferElement;
+            }
+        }
+
+        public static void SelectionSort<T>(T[] array) where T : IComparable
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                var minimalElement = new { Value = array[i], Index = i };
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    if(array[j].CompareTo(minimalElement.Value) < 0)
+                    {
+                        minimalElement = new { Value = array[j], Index = j };
+                    }
+                }
+
+                Tools.Swap(ref array[i], ref array[minimalElement.Index]);
             }
         }
     }
