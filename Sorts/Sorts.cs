@@ -8,6 +8,30 @@ namespace Sorts
 {
     public static class Sorts
     {
+        public enum AvailableSorts { BubbleSort, SelectionSort }
+
+        public static void Sort<T>(T[] array, AvailableSorts availableSorts) where T : IComparable
+        {
+            Console.WriteLine($"{availableSorts}:");
+
+            Tools.OutputArray(array, ArrayStatus.Unsorted);
+
+            switch (availableSorts)
+            {
+                case AvailableSorts.BubbleSort:
+                    BubbleSort(array);
+                    break;
+                case AvailableSorts.SelectionSort:
+                    SelectionSort(array);
+                    break;
+                default:
+                    Console.WriteLine("Array wasn't sorted");
+                    return;
+            }
+
+            Tools.OutputArray(array, ArrayStatus.Sorted);
+        }
+
         public static void BubbleSort<T>(T[] array) where T : IComparable
         {
             for (int i = array.Length - 1; i > 0; i--)
