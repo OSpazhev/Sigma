@@ -23,6 +23,10 @@ namespace Sorts
             // Selection Sort
             array = Tools.CreateUnsortedArray(10);
             Sorts.Sort(array, Sorts.AvailableSorts.SelectionSort);
+
+            // Merge Sort
+            array = Tools.CreateUnsortedArray(10);
+            Sorts.Sort(array, Sorts.AvailableSorts.MergeSort);
         }
     }
 }
