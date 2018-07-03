@@ -8,7 +8,7 @@ namespace Sorts
 {
     public static class Sorts
     {
-        public enum AvailableSorts { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort }
+        public enum AvailableSorts { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort, BinarySort }
 
         public static void Sort<T>(T[] array, AvailableSorts availableSorts) where T : IComparable
         {
@@ -32,6 +32,9 @@ namespace Sorts
                     break;
                 case AvailableSorts.QuickSort:
                     QuickSort(array);
+                    break;
+                case AvailableSorts.BinarySort:
+                    BinarySort(array);
                     break;
                 default:
                     Console.WriteLine("Array wasn't sorted");
@@ -199,6 +202,64 @@ namespace Sorts
 
             QuickSort(array, left, rightIndex);
             QuickSort(array, leftIndex, right);
+        }
+        #endregion
+
+        private class Node<T> where T : IComparable
+        {
+            public Node<T> LeftSon { get; set; } = null;
+            public Node<T> RightSon { get; set; } = null;
+            public T Value { get; set; }
+            public void AddValueToTheTree(T newValue)
+            {
+                if (newValue.CompareTo(Value) <= 0)
+                {
+                    if (LeftSon != null)
+                    {
+                        LeftSon.AddValueToTheTree(newValue);
+                    }
+                    else
+                    {
+                        LeftSon = new Node<T>();
+                        LeftSon.Value = newValue;
+                    }
+                }
+                else
+                {
+                    if (RightSon != null)
+                    {
+                        RightSon.AddValueToTheTree(newValue);
+                    }
+                    else
+                    {
+                        RightSon = new Node<T>();
+                        RightSon.Value = newValue;
+                    }
+                }
+            }
+            public void GetSortedArray(List<T> currentArray)
+            {
+                LeftSon?.GetSortedArray(currentArray);
+                currentArray.Add(Value);
+                RightSon?.GetSortedArray(currentArray);
+            }
+        }
+        
+        #region BinarySort
+        public static void BinarySort<T>(T[] array) where T : IComparable
+        {
+            Node<T> root = new Node<T>();
+            root.Value = array[0];
+            for (int i = 1; i < array.Length; i++)
+            {
+                root.AddValueToTheTree(array[i]);
+            }
+            List<T> sortedArray = new List<T>();
+            root.GetSortedArray(sortedArray);
+            for(int i = 0; i < array.Length; i++)
+            {
+                array[i] = sortedArray[i];
+            }
         }
         #endregion
     }

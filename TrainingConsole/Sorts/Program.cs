@@ -11,7 +11,7 @@ namespace Sorts
         static void Main(string[] args)
         {
             int[] array;
-            int arraySize = 20;
+            int arraySize = 15;
 
             // Bubble Sort
             array = Tools.CreateUnsortedArray(arraySize);
@@ -32,6 +32,10 @@ namespace Sorts
             // Quick Sort
             array = Tools.CreateUnsortedArray(arraySize);
             Sorts.Sort(array, Sorts.AvailableSorts.QuickSort);
+
+            // Binary Sort 
+            array = Tools.CreateUnsortedArray(arraySize);
+            Sorts.Sort(array, Sorts.AvailableSorts.BinarySort);
         }
     }
 }
