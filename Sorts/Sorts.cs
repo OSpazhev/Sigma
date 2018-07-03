@@ -21,5 +21,27 @@ namespace Sorts
                 }
             }
         }
+
+        public static void SelectionSort<T>(T[] array) where T : IComparable
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                T bufferElement = array[i];
+                int indexForInsert = 0;
+                for (int j = i - 1; j >= 0; j--)
+                {
+                    if (array[j].CompareTo(bufferElement) <= 0)
+                    {
+                        indexForInsert = j + 1;
+                        break;
+                    }
+                }
+                for (int j = i; j > indexForInsert; j--)
+                {
+                    array[j] = array[j - 1];
+                }
+                array[indexForInsert] = bufferElement;
+            }
+        }
     }
 }
