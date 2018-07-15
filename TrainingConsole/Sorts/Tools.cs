@@ -34,7 +34,12 @@ namespace Sorts
         public static void OutputArray<T>(T[] array, ArrayStatus arrayStatus)
         {
             Console.Write($"{arrayStatus} array: ");
-            for(int i = 0; i < array.Length - 1; i++)
+            OutputArray(array);
+        }
+
+        public static void OutputArray<T>(T[] array)
+        {
+            for (int i = 0; i < array.Length - 1; i++)
             {
                 Console.Write($"{array[i]}, ");
             }

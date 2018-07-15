@@ -104,7 +104,7 @@ namespace BookTasks
             {
                 if (Utils.IsAllDigitsDifferent(value))
                 {
-                    Utils.OutputResult(System.Reflection.MethodBase.GetCurrentMethod().Name, Utils.GenerateAllVariants(value));
+                    Utils.OutputResult(System.Reflection.MethodBase.GetCurrentMethod().Name, Utils.GenerateAllPermutations(value));
                 }
             }
         }

@@ -51,12 +51,12 @@ namespace BookTasks
             return digits.Distinct().Count() == digits.Length;
         }
 
-        public static int[] GenerateAllVariants(int value)
+        public static int[] GenerateAllPermutations(int value)
         {
-            return GenerateAllVariants(ParseDigits(value));
+            return GenerateAllPermutations(ParseDigits(value));
         }
 
-        public static int[] GenerateAllVariants(byte[] digits)
+        public static int[] GenerateAllPermutations(byte[] digits)
         {
             var result = new List<int>();
             for (int i = 0; i < digits.Length; i++)
@@ -65,7 +65,7 @@ namespace BookTasks
                 {
                     byte temp = digits[i];
                     digits[i] = 10;
-                    var tempResult = GenerateAllVariants(digits).ToList();
+                    var tempResult = GenerateAllPermutations(digits).ToList();
                     digits[i] = temp;
                     if (tempResult.Count == 0)
                     {
