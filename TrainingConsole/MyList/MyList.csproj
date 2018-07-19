@@ -48,5 +48,11 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sorts\Sorts.csproj">
+      <Project>{059A5F04-3F4A-42A9-B592-2D762A0D76AD}</Project>
+      <Name>Sorts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
