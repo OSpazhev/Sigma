@@ -338,13 +338,5 @@ namespace MyList
             Array.Copy(array, index + count, array, index, Count - index - count);
             Count -= count;
         }
-
-        public int Reverse(int index, int count)
-
-        private void Test()
-        {
-            List<char> list = new List<char>();
-            list.;
-        }
     }
 }
